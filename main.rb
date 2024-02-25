@@ -9,15 +9,6 @@ class User
 end
 
 class Reservation
-  attr_reader :start_at, :end_at, :reserver
-  def initialize(start_at:, end_at:, reserver:)
-    @start_at = start_at
-    @end_at = end_at
-    @reserver = reserver
-  end
-end
-
-class ReservableSlot
   class ExceedReservers < StandardError; end
   class AlreadyReserved < StandardError; end
 
@@ -52,9 +43,11 @@ reservables = Array.new(31) do |i|
   start_at = business_hour_start + i.days
   Array
     .new(8) { |j| start_at + j.hour }
-    .map { |s| ReservableSlot.new(start_at: s, end_at: s + split_hour, amount: 3) }
+    .map { |s| Reservation.new(start_at: s, end_at: s + split_hour, amount: 3) }
 end.flatten
 
 user = User.new('user')
 reservable = reservables.sample
+reservable.reserve!(user)
+reservable.cancel!(user)
 binding.pry
