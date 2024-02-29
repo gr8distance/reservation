@@ -14,4 +14,6 @@
 #  index_reservations_on_start_at_and_end_at  (start_at,end_at) UNIQUE
 #
 class Reservation < ApplicationRecord
+  has_many :user_reservations
+  has_many :users, through: :user_reservations
 end

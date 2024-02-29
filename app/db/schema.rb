@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_29_135747) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_29_135940) do
   create_table "business_hours", force: :cascade do |t|
     t.integer "start_at", null: false
     t.integer "end_at", null: false
@@ -41,10 +41,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_29_135747) do
     t.index ["start_at", "end_at"], name: "index_reservations_on_start_at_and_end_at", unique: true
   end
 
+  create_table "user_reservations", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "reservation_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reservation_id"], name: "index_user_reservations_on_reservation_id"
+    t.index ["user_id", "reservation_id"], name: "index_user_reservations_on_user_id_and_reservation_id", unique: true
+    t.index ["user_id"], name: "index_user_reservations_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "user_reservations", "reservations"
+  add_foreign_key "user_reservations", "users"
 end

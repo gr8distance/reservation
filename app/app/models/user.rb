@@ -8,4 +8,6 @@
 #  updated_at :datetime         not null
 #
 class User < ApplicationRecord
+  has_many :user_reservations
+  has_many :reservations, through: :user_reservations
 end
