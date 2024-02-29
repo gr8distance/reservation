@@ -16,4 +16,8 @@
 class Reservation < ApplicationRecord
   has_many :user_reservations
   has_many :users, through: :user_reservations
+
+  def full_house?
+    user_reservations.count >= amount
+  end
 end

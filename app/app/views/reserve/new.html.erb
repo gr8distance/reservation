@@ -1,6 +1,10 @@
 <h1>Reserve#new</h1>
 <p>Find me in app/views/reserve/new.html.erb</p>
 
+<% if notice %>
+  <%= notice %>
+<% end %>
+
 <table>
   <tr>
     <th>Start at</th>
@@ -13,8 +17,15 @@
     <tr>
       <td><%= reservable.start_at %></td>
       <td><%= reservable.end_at %></td>
-      <td><%= '頑張って現在の予約数をとる' %></td>
-      <td><%= link_to '予約', '' %></td>
+      <td><%= reservable.users.count %>人</td>
+      <td>
+        <%= form_with(url: reserve_create_path, method: :post) do |f| %>
+          <%= f.hidden_field :start_at, value: reservable.start_at %>
+          <%= f.hidden_field :end_at, value: reservable.end_at %>
+          <%= f.hidden_field :user_id, value: @user.id %>
+          <%= f.submit 'Reserve' %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
 </table>

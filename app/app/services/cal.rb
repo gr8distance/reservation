@@ -27,8 +27,7 @@ class Cal
   end
 
   def build_reservation(start_at, end_at, amount = 3)
-    # TODO: SQL頑張る💪
-    reservation = reserved.find { |r| r.start_at == start_at && r.end_at == end_at }
+    reservation = Reservation.find_by(start_at: start_at, end_at: end_at)
     case
     when reservation.nil?
       Reservation.new(start_at: start_at, end_at: end_at, amount: amount)
