@@ -1,8 +1,8 @@
 class CreateBusinessHours < ActiveRecord::Migration[7.1]
   def change
     create_table :business_hours do |t|
-      t.datetime :start_at, null: false
-      t.datetime :end_at, null: false
+      t.integer :start_at, null: false
+      t.integer :end_at, null: false
 
       t.timestamps
 

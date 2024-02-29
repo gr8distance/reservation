@@ -1,2 +1,6 @@
 <h1>Home#index</h1>
 <p>Find me in app/views/home/index.html.erb</p>
+
+<% %w[holidays reservable_times business_hours reservations].each do |name| %>
+  <%= link_to name, __send__("#{name}_path") %>
+<% end %>

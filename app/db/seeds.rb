@@ -7,3 +7,6 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+Holiday.create!(Date.parse('2024-03-01'))
+Holiday.create!(Date.parse('2024-03-04'))
