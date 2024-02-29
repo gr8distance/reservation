@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :holidays
   resources :reservable_times
   resources :business_hours
   resources :reservations
