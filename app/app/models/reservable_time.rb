@@ -1,0 +1,2 @@
+class ReservableTime < ApplicationRecord
+end

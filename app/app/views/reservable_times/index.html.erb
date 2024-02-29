@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Reservable times</h1>
+
+<div id="reservable_times">
+  <% @reservable_times.each do |reservable_time| %>
+    <%= render reservable_time %>
+    <p>
+      <%= link_to "Show this reservable time", reservable_time %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New reservable time", new_reservable_time_path %>

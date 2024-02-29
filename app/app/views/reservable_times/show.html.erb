@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @reservable_time %>
+
+<div>
+  <%= link_to "Edit this reservable time", edit_reservable_time_path(@reservable_time) %> |
+  <%= link_to "Back to reservable times", reservable_times_path %>
+
+  <%= button_to "Destroy this reservable time", @reservable_time, method: :delete %>
+</div>
