@@ -8,5 +8,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-Holiday.create!(Date.parse('2024-03-01'))
-Holiday.create!(Date.parse('2024-03-04'))
+Holiday.create!(date: Date.parse('2024-03-01'))
+Holiday.create!(date: Date.parse('2024-03-04'))
+BusinessHour.create!(start_at: 9, end_at: 18)
+ReservableTime.create!(minute: 60)
