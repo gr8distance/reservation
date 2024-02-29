@@ -1,0 +1,20 @@
+<h1>Reserve#new</h1>
+<p>Find me in app/views/reserve/new.html.erb</p>
+
+<table>
+  <tr>
+    <th>Start at</th>
+    <th>End at</th>
+    <th>Current Reserver amount</th>
+    <th></th>
+  </tr>
+
+  <% @reservables.each do |reservable| %>
+    <tr>
+      <td><%= reservable.start_at %></td>
+      <td><%= reservable.end_at %></td>
+      <td><%= '頑張って現在の予約数をとる' %></td>
+      <td><%= link_to '予約', '' %></td>
+    </tr>
+  <% end %>
+</table>

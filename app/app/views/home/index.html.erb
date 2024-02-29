@@ -4,3 +4,5 @@
 <% %w[holidays reservable_times business_hours reservations].each do |name| %>
   <%= link_to name, __send__("#{name}_path") %>
 <% end %>
+
+<%= link_to '予約', reserve_new_path %>
