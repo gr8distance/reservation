@@ -20,4 +20,8 @@ class Reservation < ApplicationRecord
   def full_house?
     user_reservations.count >= amount
   end
+
+  def to_date
+    start_at.to_date
+  end
 end

@@ -5,27 +5,32 @@
   <%= notice %>
 <% end %>
 
-<table>
-  <tr>
-    <th>Start at</th>
-    <th>End at</th>
-    <th>現在の予約数</th>
-    <th></th>
-  </tr>
+<% @reservables.group_by(&:to_date).each do |date, reservables| %>
+  <div class=''>
+    <h2><%= date %></h2>
+    <table class="table table-xs">
+      <tr>
+        <th>Start at</th>
+        <th>End at</th>
+        <th>現在の予約数</th>
+        <th></th>
+      </tr>
 
-  <% @reservables.each do |reservable| %>
-    <tr>
-      <td><%= reservable.start_at %></td>
-      <td><%= reservable.end_at %></td>
-      <td><%= reservable.users.count %>人</td>
-      <td>
-        <%= form_with(url: reserve_create_path, method: :post) do |f| %>
-          <%= f.hidden_field :start_at, value: reservable.start_at %>
-          <%= f.hidden_field :end_at, value: reservable.end_at %>
-          <%= f.hidden_field :user_id, value: @user.id %>
-          <%= f.submit 'Reserve' %>
-        <% end %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+      <% reservables.each do |reservable| %>
+        <tr>
+          <td><%= reservable.start_at %></td>
+          <td><%= reservable.end_at %></td>
+          <td><%= reservable.users.count %>人</td>
+          <td>
+            <%= form_with(url: reserve_create_path, method: :post) do |f| %>
+              <%= f.hidden_field :start_at, value: reservable.start_at %>
+              <%= f.hidden_field :end_at, value: reservable.end_at %>
+              <%= f.hidden_field :user_id, value: @user.id %>
+              <%= f.submit 'Reserve', class: 'btn btn-primary text-white' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+<% end %>
